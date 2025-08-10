@@ -8,7 +8,11 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/generate-story",
+      "dest": "server.js"
+    },
+    {
+      "src": "/download-pdf",
       "dest": "server.js"
     }
   ]
