@@ -140,13 +140,14 @@ document.getElementById('download-pdf').addEventListener('click', async function
                 <title>${title}</title>
                 <style>
                     body { font-family: 'Noto Sans JP', sans-serif; margin: 1mm 15mm 15mm 15mm; line-height: 1.4; color: #333; font-size: 10pt; }
-                    .memorial-title { font-size: 1.8em; text-align: center; margin-bottom: 0.5em; color: #444; }
-                    .memorial-subtitle { font-size: 1.0em; text-align: center; margin-bottom: 1.0em; color: #666; }
+                    .memorial-content { margin-top: 0; }
+                    .memorial-title { font-size: 1.8em; text-align: center; margin-top: 0; margin-bottom: 0.3em; color: #444; }
+                    .memorial-subtitle { font-size: 1.0em; text-align: center; margin-top: 0; margin-bottom: 0.8em; color: #666; }
                     .memorial-story { margin-top: 1.5em; text-align: justify; }
                     .memorial-story p { margin-bottom: 0.8em; }
                     .highlight { color: #d9534f; font-weight: bold; }
-                    .image-gallery-display { text-align: center; margin-top: 1.5em; }
-                    .memorial-photo { max-width: 50%; max-height: 50mm; height: auto; margin-bottom: 1em; border: 1px solid #ddd; padding: 5px; box-sizing: border-box; object-fit: contain; }
+                    .image-gallery-display { display: flex; justify-content: center; align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-top: 1.5em; }
+                    .memorial-photo { max-width: 30%; max-height: 30mm; height: auto; border: 1px solid #ddd; padding: 5px; box-sizing: border-box; object-fit: contain; }
                     @page { size: A4; margin: 1mm 15mm 15mm 15mm; }
                 </style>
             </head>
