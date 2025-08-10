@@ -132,7 +132,7 @@ document.getElementById('download-pdf').addEventListener('click', async function
             margin:       [10, 10, 10, 10],
             filename:     '愛車メモリアルブック.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2, logging: true, dpi: 192, letterRendering: true, useCORS: true }, // useCORS: true を追加
+            html2canvas:  { scale: 4, logging: true, dpi: 300, letterRendering: true, useCORS: true }, // scaleとdpiを調整
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
         };
 
