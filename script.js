@@ -143,7 +143,7 @@ document.getElementById('download-pdf').addEventListener('click', async function
                     .memorial-content { margin-top: 0; }
                     .memorial-title { font-size: 1.8em; text-align: center; margin-top: 0; margin-bottom: 0.3em; color: #444; }
                     .memorial-subtitle { font-size: 1.0em; text-align: center; margin-top: 0; margin-bottom: 0.8em; color: #666; }
-                    .memorial-story { margin-top: 1.5em; text-align: justify; }
+                    .memorial-story { margin-top: 1.5em; text-align: justify; page-break-after: auto; overflow: visible; }
                     .memorial-story p { margin-bottom: 0.8em; page-break-inside: auto; }
                     .highlight { color: #d9534f; font-weight: bold; }
                     .image-gallery-display { display: flex; justify-content: center; align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-top: 1.5em; }
