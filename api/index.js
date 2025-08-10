@@ -1,7 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
+const chromium = require('chrome-aws-lambda');
 const fs = require('fs');
 const path = require('path');
 
@@ -81,7 +82,12 @@ app.post('/download-pdf', async (req, res) => {
             </html>
         `;
 
-        const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
+        const browser = await puppeteer.launch({
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath,
+            headless: chromium.headless,
+        });
         const page = await browser.newPage();
         await page.setContent(fullHtml, { waitUntil: 'load', timeout: 0 });
         const pdf = await page.pdf({
