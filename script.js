@@ -132,16 +132,19 @@ document.getElementById('download-pdf').addEventListener('click', async function
             margin:       [10, 10, 10, 10],
             filename:     '愛車メモリアルブック.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2, logging: true, dpi: 192, letterRendering: true },
+            html2canvas:  { scale: 2, logging: true, dpi: 192, letterRendering: true, useCORS: true }, // useCORS: true を追加
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
         };
 
         // html2pdf().set(opt).from(element).save();
         // Use then() to ensure button state is reset after save completes
-        html2pdf().set(opt).from(element).save().then(() => {
-            this.disabled = false;
-            this.textContent = 'PDFとしてダウンロード';
-        });
+        // Add a small delay to ensure all content is rendered
+        setTimeout(() => {
+            html2pdf().set(opt).from(element).save().then(() => {
+                this.disabled = false;
+                this.textContent = 'PDFとしてダウンロード';
+            });
+        }, 100); // 100ms の遅延を追加
 
     } catch (error) {
         console.error('PDF Download Error:', error);
