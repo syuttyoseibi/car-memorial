@@ -139,7 +139,7 @@ document.getElementById('download-pdf').addEventListener('click', async function
                 <meta charset="UTF-8">
                 <title>${title}</title>
                 <style>
-                    body { font-family: 'Noto Sans JP', sans-serif; margin: 5mm 15mm 15mm 15mm; line-height: 1.4; color: #333; font-size: 10pt; }
+                    body { font-family: 'Noto Sans JP', sans-serif; margin: 1mm 15mm 15mm 15mm; line-height: 1.4; color: #333; font-size: 10pt; }
                     .memorial-title { font-size: 1.8em; text-align: center; margin-bottom: 0.5em; color: #444; }
                     .memorial-subtitle { font-size: 1.0em; text-align: center; margin-bottom: 1.0em; color: #666; }
                     .memorial-story { margin-top: 1.5em; text-align: justify; }
@@ -147,7 +147,7 @@ document.getElementById('download-pdf').addEventListener('click', async function
                     .highlight { color: #d9534f; font-weight: bold; }
                     .image-gallery-display { text-align: center; margin-top: 1.5em; }
                     .memorial-photo { max-width: 50%; max-height: 50mm; height: auto; margin-bottom: 1em; border: 1px solid #ddd; padding: 5px; box-sizing: border-box; object-fit: contain; }
-                    @page { size: A4; margin: 5mm 15mm 15mm 15mm; }
+                    @page { size: A4; margin: 1mm 15mm 15mm 15mm; }
                 </style>
             </head>
             <body>
@@ -161,8 +161,8 @@ document.getElementById('download-pdf').addEventListener('click', async function
             </html>
         `;
 
-        const opt = {
-            margin:       [5, 10, 10, 10], // トップマージンを減らす
+                const opt = {
+            margin:       [1, 10, 10, 10], // トップマージンをさらに減らす
             filename:     '愛車メモリアルブック.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { scale: 2, logging: true, dpi: 192, letterRendering: true, useCORS: true },
