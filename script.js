@@ -127,24 +127,54 @@ document.getElementById('download-pdf').addEventListener('click', async function
     this.textContent = 'PDFを生成中...';
 
     try {
-        const element = document.getElementById('memorial-book-container');
+        const storyHtml = document.body.getAttribute('data-story-html');
+        const imageDataUrls = JSON.parse(document.body.getAttribute('data-image-urls') || '[]');
+        const title = document.querySelector('.memorial-title').textContent;
+        const subtitle = document.querySelector('.memorial-subtitle').textContent;
+
+        const printableHtml = `
+            <!DOCTYPE html>
+            <html lang="ja">
+            <head>
+                <meta charset="UTF-8">
+                <title>${title}</title>
+                <style>
+                    body { font-family: 'Noto Sans JP', sans-serif; margin: 20mm; line-height: 1.6; color: #333; }
+                    .memorial-title { font-size: 2em; text-align: center; margin-bottom: 0.5em; color: #444; }
+                    .memorial-subtitle { font-size: 1.2em; text-align: center; margin-bottom: 1.5em; color: #666; }
+                    .memorial-story { margin-top: 2em; text-align: justify; }
+                    .memorial-story p { margin-bottom: 1em; }
+                    .highlight { color: #d9534f; font-weight: bold; }
+                    .image-gallery-display { text-align: center; margin-top: 2em; }
+                    .memorial-photo { max-width: 100%; height: auto; margin-bottom: 1em; border: 1px solid #ddd; padding: 5px; box-sizing: border-box; }
+                    @page { size: A4; margin: 20mm; }
+                </style>
+            </head>
+            <body>
+                <div class="memorial-content">
+                    <h2 class="memorial-title">${title}</h2>
+                    <p class="memorial-subtitle">${subtitle}</p>
+                    ${imageDataUrls.length > 0 ? '<div class="image-gallery-display">' + imageDataUrls.map(url => `<img class="memorial-photo" src="${url}">`).join('') + '</div>' : ''}
+                    <div class="memorial-story">${storyHtml}</div>
+                </div>
+            </body>
+            </html>
+        `;
+
         const opt = {
             margin:       [10, 10, 10, 10],
             filename:     '愛車メモリアルブック.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 4, logging: true, dpi: 300, letterRendering: true, useCORS: true }, // scaleとdpiを調整
+            html2canvas:  { scale: 4, logging: true, dpi: 300, letterRendering: true, useCORS: true },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
         };
 
-        // html2pdf().set(opt).from(element).save();
-        // Use then() to ensure button state is reset after save completes
-        // Add a small delay to ensure all content is rendered
         setTimeout(() => {
-            html2pdf().set(opt).from(element).save().then(() => {
+            html2pdf().set(opt).from(printableHtml).save().then(() => {
                 this.disabled = false;
                 this.textContent = 'PDFとしてダウンロード';
             });
-        }, 100); // 100ms の遅延を追加
+        }, 100);
 
     } catch (error) {
         console.error('PDF Download Error:', error);
