@@ -1,10 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
-const puppeteer = require('puppeteer-core');
-const chromium = require('@sparticuz/chromium');
-const fs = require('fs');
-const path = require('path');
 
 const app = express();
 
@@ -42,67 +38,6 @@ app.post('/api/generate-story', async (req, res) => {
     } catch (error) {
         console.error("Error generating story:", error);
         res.status(500).json({ error: 'AIによる物語の生成に失敗しました。' });
-    }
-});
-
-app.post('/api/download-pdf', async (req, res) => {
-    try {
-        const { title, subtitle, storyHtml, imageDataUrls } = req.body; // Changed to imageDataUrls (plural)
-        const css = fs.readFileSync(path.join(process.cwd(), 'style.css'), 'utf8'); // Use style.css
-
-        // Generate multiple image tags
-        let imageTagsHtml = '';
-        if (imageDataUrls && imageDataUrls.length > 0) {
-            imageTagsHtml = '<div id="image-gallery-display">'; // Use existing display ID
-            imageDataUrls.forEach(url => {
-                imageTagsHtml += `<img class="memorial-photo" src="${url}">`;
-            });
-            imageTagsHtml += '</div>';
-        }
-
-        const fullHtml = `
-            <!DOCTYPE html>
-            <html lang="ja">
-            <head>
-                <meta charset="UTF-8">
-                <style>${css}</style>
-            </head>
-            <body>
-                <div id="memorial-book-container">
-                    <div id="memorial-content">
-                        <h2 class="memorial-title">${title}</h2>
-                        <p class="memorial-subtitle">${subtitle}</p>
-                        ${imageTagsHtml} <!-- Insert multiple images here -->
-                        <div class="memorial-story">${storyHtml}</div>
-                    </div>
-                </div>
-            </body>
-            </html>
-        `;
-
-        const browser = await puppeteer.launch({
-            args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox'],
-            defaultViewport: chromium.defaultViewport,
-            executablePath: await chromium.executablePath(),
-            headless: true,
-        });
-        const page = await browser.newPage();
-        await page.setContent(fullHtml, { waitUntil: 'load', timeout: 0 });
-        const pdf = await page.pdf({
-            format: 'A4', // Revert to A4 format
-            printBackground: true,
-            margin: { top: '0px', right: '0px', bottom: '0px', left: '0px' }
-        });
-        await browser.close();
-
-        res.contentType("application/pdf");
-        const fileName = '愛車メモリアルブック.pdf';
-        res.setHeader('Content-Disposition', `attachment; filename*=UTF-8''${encodeURIComponent(fileName)}`);
-        res.send(pdf);
-
-    } catch (error) {
-        console.error("PDF Generation Error:", error);
-        res.status(500).send('PDFの生成に失敗しました。');
     }
 });
 

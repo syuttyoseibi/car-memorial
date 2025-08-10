@@ -127,37 +127,25 @@ document.getElementById('download-pdf').addEventListener('click', async function
     this.textContent = 'PDFを生成中...';
 
     try {
-        // Get all the raw data needed to build the PDF from scratch
-        const payload = {
-            title: document.querySelector('.memorial-title').textContent,
-            subtitle: document.querySelector('.memorial-subtitle').textContent,
-            storyHtml: document.body.getAttribute('data-story-html'),
-            imageDataUrls: JSON.parse(document.body.getAttribute('data-image-urls') || '[]') // Get array of image URLs
+        const element = document.getElementById('memorial-book-container');
+        const opt = {
+            margin:       [10, 10, 10, 10],
+            filename:     '愛車メモリアルブック.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2, logging: true, dpi: 192, letterRendering: true },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
         };
 
-        const response = await fetch('/api/download-pdf', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
+        // html2pdf().set(opt).from(element).save();
+        // Use then() to ensure button state is reset after save completes
+        html2pdf().set(opt).from(element).save().then(() => {
+            this.disabled = false;
+            this.textContent = 'PDFとしてダウンロード';
         });
-
-        if (!response.ok) { throw new Error(`PDF generation failed: ${response.statusText}`); }
-
-        const pdfBlob = await response.blob();
-        const url = window.URL.createObjectURL(pdfBlob);
-        const a = document.createElement('a');
-        a.style.display = 'none';
-        a.href = url;
-        a.download = '愛車メモリアルブック.pdf';
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        a.remove();
 
     } catch (error) {
         console.error('PDF Download Error:', error);
         alert('PDFのダウンロードに失敗しました。');
-    } finally {
         this.disabled = false;
         this.textContent = 'PDFとしてダウンロード';
     }
