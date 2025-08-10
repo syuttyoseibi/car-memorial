@@ -139,7 +139,7 @@ document.getElementById('download-pdf').addEventListener('click', async function
                 <meta charset="UTF-8">
                 <title>${title}</title>
                 <style>
-                    body { font-family: 'Noto Sans JP', sans-serif; margin: 10mm 15mm 5mm 15mm; line-height: 1.6; color: #333; font-size: 13pt; }
+                    body { font-family: 'Noto Sans JP', sans-serif; margin: 10mm 15mm 5mm 15mm; line-height: 1.5; color: #333; font-size: 12pt; }
                     .memorial-content { margin-top: 0; }
                     .memorial-title { font-size: 1.8em; text-align: center; margin-top: 0; margin-bottom: 0.3em; color: #444; }
                     .memorial-subtitle { font-size: 1.0em; text-align: center; margin-top: 0; margin-bottom: 0.8em; color: #666; }
