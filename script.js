@@ -15,7 +15,7 @@ document.getElementById('memorial-form').addEventListener('submit', async functi
     };
 
     try {
-        const response = await fetch('/generate-story', {
+        const response = await fetch('/api/generate-story', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData),
@@ -135,7 +135,7 @@ document.getElementById('download-pdf').addEventListener('click', async function
             imageDataUrls: JSON.parse(document.body.getAttribute('data-image-urls') || '[]') // Get array of image URLs
         };
 
-        const response = await fetch('/download-pdf', {
+        const response = await fetch('/api/download-pdf', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload),
