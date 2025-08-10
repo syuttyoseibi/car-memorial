@@ -81,10 +81,10 @@ app.post('/api/download-pdf', async (req, res) => {
         `;
 
         const browser = await puppeteer.launch({
-            args: chromium.args,
+            args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox'],
             defaultViewport: chromium.defaultViewport,
             executablePath: await chromium.executablePath(),
-            headless: chromium.headless,
+            headless: true,
         });
         const page = await browser.newPage();
         await page.setContent(fullHtml, { waitUntil: 'load', timeout: 0 });
