@@ -8,7 +8,7 @@ const path = require('path');
 
 const app = express();
 
-const genAI = GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 app.use(express.json({ limit: '50mb' }));
 
