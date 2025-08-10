@@ -144,7 +144,7 @@ document.getElementById('download-pdf').addEventListener('click', async function
                     .memorial-title { font-size: 1.8em; text-align: center; margin-top: 0; margin-bottom: 0.3em; color: #444; }
                     .memorial-subtitle { font-size: 1.0em; text-align: center; margin-top: 0; margin-bottom: 0.8em; color: #666; }
                     .memorial-story { margin-top: 1.5em; text-align: justify; }
-                    .memorial-story p { margin-bottom: 0.8em; }
+                    .memorial-story p { margin-bottom: 0.8em; page-break-inside: auto; }
                     .highlight { color: #d9534f; font-weight: bold; }
                     .image-gallery-display { display: flex; justify-content: center; align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-top: 1.5em; }
                     .memorial-photo { max-width: 30%; max-height: 30mm; height: auto; border: 1px solid #ddd; padding: 5px; box-sizing: border-box; object-fit: contain; }
@@ -163,11 +163,12 @@ document.getElementById('download-pdf').addEventListener('click', async function
         `;
 
                 const opt = {
-            margin:       [1, 10, 5, 10], // 下部マージンを減らす
+            margin:       [1, 10, 5, 10],
             filename:     '愛車メモリアルブック.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { scale: 2, logging: true, dpi: 192, letterRendering: true, useCORS: true },
-            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak:    { mode: ['css'] } // 改ページモードをCSSに設定
         };
 
         setTimeout(() => {
