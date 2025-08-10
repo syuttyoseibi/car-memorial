@@ -9,18 +9,11 @@ const app = express();
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// APIルートより前に、静的ファイルのリクエストでないことを確認するためのミドルウェアを追加
-// ただし、Vercelでは通常、静的ファイルはAPIルートより先に処理されるため、これは保険的な意味合いが強い
-app.use((req, res, next) => {
-  if (req.path.includes('.')) { // .html, .css, .jsなどを含むパスは無視
-    return res.status(404).send('Not found');
-  }
-  next();
-});
+
 
 app.use(express.json({ limit: '50mb' }));
 
-app.post('/api/generate-story', async (req, res) => {
+app.post('/generate-story', async (req, res) => {
     try {
         const userInput = req.body;
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
@@ -53,7 +46,7 @@ app.post('/api/generate-story', async (req, res) => {
     }
 });
 
-app.post('/api/download-pdf', async (req, res) => {
+app.post('/download-pdf', async (req, res) => {
     try {
         const { title, subtitle, storyHtml, imageDataUrls } = req.body; // Changed to imageDataUrls (plural)
         const css = fs.readFileSync(path.join(process.cwd(), 'style.css'), 'utf8'); // Use style.css
