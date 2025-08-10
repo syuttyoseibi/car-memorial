@@ -3,6 +3,7 @@ const express = require('express');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const puppeteer = require('puppeteer');
 const fs = require('fs');
+const path = require('path');
 
 const app = express();
 const port = 3000;
@@ -48,7 +49,7 @@ app.post('/generate-story', async (req, res) => {
 app.post('/download-pdf', async (req, res) => {
     try {
         const { title, subtitle, storyHtml, imageDataUrls } = req.body; // Changed to imageDataUrls (plural)
-        const css = fs.readFileSync('style.css', 'utf8'); // Use style.css
+        const css = fs.readFileSync(path.join(process.cwd(), 'style.css'), 'utf8'); // Use style.css
 
         // Generate multiple image tags
         let imageTagsHtml = '';
