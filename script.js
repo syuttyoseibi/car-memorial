@@ -146,7 +146,7 @@ document.getElementById('download-pdf').addEventListener('click', async function
                     .memorial-story p { margin-bottom: 0.8em; }
                     .highlight { color: #d9534f; font-weight: bold; }
                     .image-gallery-display { text-align: center; margin-top: 1.5em; }
-                    .memorial-photo { max-width: 90%; max-height: 200mm; height: auto; margin-bottom: 1em; border: 1px solid #ddd; padding: 5px; box-sizing: border-box; }
+                    .memorial-photo { max-width: 70%; max-height: 80mm; height: auto; margin-bottom: 1em; border: 1px solid #ddd; padding: 5px; box-sizing: border-box; object-fit: contain; }
                     @page { size: A4; margin: 15mm; }
                 </style>
             </head>
