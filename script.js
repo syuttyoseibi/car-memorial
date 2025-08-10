@@ -143,7 +143,7 @@ document.getElementById('download-pdf').addEventListener('click', async function
                     .memorial-content { margin-top: 0; }
                     .memorial-title { font-size: 1.8em; text-align: center; margin-top: 0; margin-bottom: 0.3em; color: #444; }
                     .memorial-subtitle { font-size: 1.0em; text-align: center; margin-top: 0; margin-bottom: 0.8em; color: #666; }
-                    .memorial-story { margin-top: 1.5em; text-align: justify; page-break-after: auto; overflow: visible; }
+                    .memorial-story { margin-top: 1.5em; text-align: justify; overflow: visible; }
                     .memorial-story p { margin-bottom: 0.8em; page-break-inside: auto; }
                     .highlight { color: #d9534f; font-weight: bold; }
                     .image-gallery-display { display: flex; justify-content: center; align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-top: 1.5em; }
@@ -152,7 +152,7 @@ document.getElementById('download-pdf').addEventListener('click', async function
                 </style>
             </head>
             <body>
-                <div class="memorial-content">
+                <div class="memorial-content" style="height: auto;">
                     <h2 class="memorial-title">${title}</h2>
                     <p class="memorial-subtitle">${subtitle}</p>
                     ${imageDataUrls.length > 0 ? '<div class="image-gallery-display">' + imageDataUrls.map(url => `<img class="memorial-photo" src="${url}">`).join('') + '</div>' : ''}
