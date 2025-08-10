@@ -1,16 +1,14 @@
 require('dotenv').config();
 const express = require('express');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
-const puppeteer = require('puppeteer-core');
-const chromium = require('chrome-aws-lambda');
+// const puppeteer = require('puppeteer-core');
+// const chromium = require('chrome-aws-lambda');
 const fs = require('fs');
 const path = require('path');
 
 const app = express();
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
-
 
 app.use(express.json({ limit: '50mb' }));
 
@@ -48,6 +46,9 @@ app.post('/generate-story', async (req, res) => {
 });
 
 app.post('/download-pdf', async (req, res) => {
+    // PDF生成機能を一時的に無効化
+    res.status(503).send('PDF generation is temporarily disabled for debugging.');
+/*
     try {
         const { title, subtitle, storyHtml, imageDataUrls } = req.body; // Changed to imageDataUrls (plural)
         const css = fs.readFileSync(path.join(process.cwd(), 'style.css'), 'utf8'); // Use style.css
@@ -106,6 +107,7 @@ app.post('/download-pdf', async (req, res) => {
         console.error("PDF Generation Error (Final Build):", error);
         res.status(500).send('PDFの生成に失敗しました。');
     }
+*/
 });
 
 module.exports = app;
