@@ -139,7 +139,7 @@ document.getElementById('download-pdf').addEventListener('click', async function
                 <meta charset="UTF-8">
                 <title>${title}</title>
                 <style>
-                    body { font-family: 'Noto Sans JP', sans-serif; margin: 1mm 15mm 5mm 15mm; line-height: 1.3; color: #333; font-size: 9pt; }
+                    body { font-family: 'Noto Sans JP', sans-serif; margin: 10mm 15mm 5mm 15mm; line-height: 1.6; color: #333; font-size: 13pt; }
                     .memorial-content { margin-top: 0; }
                     .memorial-title { font-size: 1.8em; text-align: center; margin-top: 0; margin-bottom: 0.3em; color: #444; }
                     .memorial-subtitle { font-size: 1.0em; text-align: center; margin-top: 0; margin-bottom: 0.8em; color: #666; }
@@ -148,7 +148,7 @@ document.getElementById('download-pdf').addEventListener('click', async function
                     .highlight { color: #d9534f; font-weight: bold; }
                     .image-gallery-display { display: flex; justify-content: center; align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-top: 1.5em; }
                     .memorial-photo { max-width: 30%; max-height: 30mm; height: auto; border: 1px solid #ddd; padding: 5px; box-sizing: border-box; object-fit: contain; }
-                    @page { size: A4; margin: 1mm 15mm 5mm 15mm; }
+                    @page { size: A4; margin: 10mm 15mm 5mm 15mm; }
                 </style>
             </head>
             <body>
