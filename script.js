@@ -138,17 +138,6 @@ document.getElementById('download-pdf').addEventListener('click', async function
             <head>
                 <meta charset="UTF-8">
                 <title>${title}</title>
-                <style>
-                    body { font-family: 'Noto Sans JP', sans-serif; margin: 20mm; line-height: 1.6; color: #333; }
-                    .memorial-title { font-size: 2em; text-align: center; margin-bottom: 0.5em; color: #444; }
-                    .memorial-subtitle { font-size: 1.2em; text-align: center; margin-bottom: 1.5em; color: #666; }
-                    .memorial-story { margin-top: 2em; text-align: justify; }
-                    .memorial-story p { margin-bottom: 1em; }
-                    .highlight { color: #d9534f; font-weight: bold; }
-                    .image-gallery-display { text-align: center; margin-top: 2em; }
-                    .memorial-photo { max-width: 100%; height: auto; margin-bottom: 1em; border: 1px solid #ddd; padding: 5px; box-sizing: border-box; }
-                    @page { size: A4; margin: 20mm; }
-                </style>
             </head>
             <body>
                 <div class="memorial-content">
