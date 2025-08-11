@@ -140,12 +140,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     imagesHtml += '</div>';
                 }
 
+                const storyDiv = document.createElement('div');
+                storyDiv.classList.add('memorial-story');
+                storyDiv.textContent = storyFromServer; // Use textContent to sanitize
+
                 const storyHTML = `
                     <div id="memorial-content">
                         <h2 class="memorial-title">${nickname}との物語</h2>
                         <p class="memorial-subtitle">君と走った道のりは、永遠に</p>
                         ${imagesHtml} <!-- Insert all images here -->
-                        <div class="memorial-story">${storyFromServer}</div>
+                        ${storyDiv.outerHTML} <!-- Insert sanitized story div -->
                     </div>
                 `;
 
