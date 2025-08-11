@@ -428,6 +428,7 @@ body {
     text-indent: 1em; /* Add indentation to each paragraph */
     margin-bottom: 1em; /* マージンを減らす */
     font-size: 0.95em; /* フォントサイズを少し小さく */
+    color: #555; /* Explicitly set text color */
 }
 
 .memorial-story .highlight {
