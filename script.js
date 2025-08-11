@@ -1,9 +1,47 @@
-document.getElementById('memorial-form').addEventListener('submit', async function(event) {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+    // Function to trigger animations
+    const animateElements = () => {
+        document.querySelectorAll('.fade-in, .slide-in-up, .scale-in').forEach(element => {
+            const delay = parseFloat(element.dataset.animationDelay) || 0;
+            setTimeout(() => {
+                element.classList.add('active');
+            }, delay * 1000);
+        });
+    };
 
-    const submitButton = event.target.querySelector('button[type="submit"]');
-    submitButton.disabled = true;
-    submitButton.textContent = 'AIが物語を生成中です...';
+    // Trigger animations on page load
+    animateElements();
+
+    // Optional: Intersection Observer for elements further down the page
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observe sections for scroll-triggered animations
+    document.querySelectorAll('section').forEach(section => {
+        section.classList.add('slide-in-up'); // Add animation class
+        observer.observe(section);
+    });
+
+    // Form submission logic
+    document.getElementById('memorial-form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const submitButton = event.target.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.textContent;
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<span class="spinner"></span> AIが物語を生成中です...';
 
     const formData = {
         carName: document.getElementById('car-name').value,
@@ -89,7 +127,7 @@ document.getElementById('memorial-form').addEventListener('submit', async functi
         alert('物語の生成中にエラーが発生しました。サーバーが起動しているか確認してください。');
     } finally {
         submitButton.disabled = false;
-        submitButton.textContent = 'AIにメモリアルブックの作成を依頼する';
+        submitButton.innerHTML = originalButtonText;
     }
 });
 
@@ -111,16 +149,40 @@ document.getElementById('car-photo').addEventListener('change', function() {
         return;
     }
 
-    files.forEach(file => {
+    files.forEach((file, index) => {
         const reader = new FileReader();
         reader.onload = function(e) {
             const img = document.createElement('img');
             img.src = e.target.result;
+            img.classList.add('scale-in'); // Add animation class
             previewContainer.appendChild(img);
+            // Trigger animation after a short delay
+            setTimeout(() => {
+                img.classList.add('active');
+            }, index * 100); // Staggered animation
         };
         reader.readAsDataURL(file);
     });
 });
+
+// Animate memorial book container on display
+const memorialBookContainer = document.getElementById('memorial-book-container');
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+};
+
+const memorialBookObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+memorialBookObserver.observe(memorialBookContainer);
 
 document.getElementById('download-pdf').addEventListener('click', async function() {
     window.print();
