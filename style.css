@@ -228,59 +228,63 @@ button:hover {
 }
 
 @media print {
-    /* Disable animation for print to prevent blank PDF */
-    #memorial-book-container {
-        animation: none !important;
-    }
-
-    /* Revert to web styles for print, allowing natural page breaks */
+    /* ページの余白、背景、フォントサイズの基本設定 */
     body {
-        font-size: 1em; /* Default font size */
-        line-height: 1.8; /* Default line spacing */
-        padding: 20px; /* Default padding */
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
     }
 
-    #memorial-book-container {
-        padding: 40px; /* Default padding */
-        border: 5px solid #e0d7c1; /* Default border */
+    /* PDF生成時に不要な要素を非表示にする */
+    .file-input-container, #file-selection-display, #image-selection-modal, .download-button-container {
+        display: none !important;
     }
 
-    .memorial-title {
-        font-size: 2em; /* Default title size */
-        margin-bottom: 10px; /* Default margin */
+    /* ページの本文の幅を調整 */
+    .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-shadow: none;
     }
 
-    .memorial-subtitle {
-        font-size: 1em; /* Default subtitle size */
-        margin-bottom: 30px; /* Default margin */
+    /* タイトルとストーリーのスタイル */
+    .memorial-title-container, .memorial-story {
+        margin: 10mm;
     }
-
-    .memorial-photo {
-        max-width: 500px; /* Default image size */
-        margin: 0 auto 30px auto; /* Default margin */
-        /*下記コメントアウト実施*/
-        /*page-break-inside: avoid; /* Prevent images from breaking across pages */
-    }
-
     
-    /*文章ブロック内での改ページを防ぐ*/
-    .memorial-story {
-        page-break-inside: avoid; /* Prevent breaking inside story blocks */
+    /* 画像とテキストの間に改ページを強制する */
+    #image-gallery-display {
+        gap: 15px;
+        margin-bottom: 30px;
+        page-break-after: always;
     }
-
+    
+    /* 文章ブロック内で改ページを避ける */
+    .memorial-story {
+        page-break-inside: avoid;
+    }
+    
+    /* 段落（pタグ）内で改ページを避ける */
     .memorial-story p {
-        margin-bottom: 1.5em; /* Default paragraph spacing */
-        page-break-inside: auto; /* Allow page breaks inside paragraphs */
-        orphans: 3; /* Minimum number of lines at the bottom of a page */
-        widows: 3; /* Minimum number of lines at the top of a page */
         page-break-inside: avoid;
         margin-bottom: 1.5em;
     }
-    
-    #image-gallery-display {
-        gap: 15px; /* Default gap */
-        margin-bottom: 30px; /* Default margin */
-        /*下記をavoidをalwaysに*/
-        page-break-after: always; /* Keep text close to images */
+
+    /* ページの途中で段落の孤立行が発生するのを防ぐ */
+    .memorial-story h2, .memorial-story p {
+        orphans: 3;
+        widows: 3;
+    }
+
+    /* フッターのスタイル調整 */
+    .footer-content {
+        margin-top: 10mm;
+        text-align: center;
+        page-break-before: auto;
+    }
+
+    /* `html2pdf.js`の独自クラスに対するスタイル */
+    .html2pdf__page-break {
+        height: 10mm;
     }
 }
