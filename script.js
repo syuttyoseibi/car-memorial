@@ -167,11 +167,6 @@ document.getElementById('car-photo').addEventListener('change', function() {
 
 // Animate memorial book container on display
 const memorialBookContainer = document.getElementById('memorial-book-container');
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-};
 
 const memorialBookObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -180,7 +175,7 @@ const memorialBookObserver = new IntersectionObserver((entries, observer) => {
             observer.unobserve(entry.target);
         }
     });
-}, observerOptions);
+}, observerOptions); // Reuse the existing observerOptions
 
 memorialBookObserver.observe(memorialBookContainer);
 
