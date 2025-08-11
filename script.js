@@ -179,6 +179,7 @@ const memorialBookObserver = new IntersectionObserver((entries, observer) => {
 
 memorialBookObserver.observe(memorialBookContainer);
 
-document.getElementById('download-pdf').addEventListener('click', async function() {
-    window.print();
+    document.getElementById('download-pdf').addEventListener('click', async function() {
+        window.print();
+    });
 });
