@@ -188,6 +188,7 @@ document.getElementById('download-pdf').addEventListener('click', async function
             html2canvas:  { scale: 2, useCORS: true },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
             //pagebreak:    { mode: ['css', 'avoid-all'] } // 改ページモードを強化
+            pagebreak:    { mode: 'css' } 
         };
         
         // タイムアウトは不要な場合が多いため削除してもOK

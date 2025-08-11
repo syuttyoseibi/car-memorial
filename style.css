@@ -262,11 +262,10 @@ button:hover {
         /*page-break-inside: avoid; /* Prevent images from breaking across pages */
     }
 
-    #image-gallery-display {
-        gap: 15px; /* Default gap */
-        margin-bottom: 30px; /* Default margin */
-        /*下記をavoidをalwaysに*/
-        page-break-after: always; /* Keep text close to images */
+    
+    /*文章ブロック内での改ページを防ぐ*/
+    .memorial-story {
+        page-break-inside: avoid; /* Prevent breaking inside story blocks */
     }
 
     .memorial-story p {
@@ -274,5 +273,14 @@ button:hover {
         page-break-inside: auto; /* Allow page breaks inside paragraphs */
         orphans: 3; /* Minimum number of lines at the bottom of a page */
         widows: 3; /* Minimum number of lines at the top of a page */
+        page-break-inside: avoid;
+        margin-bottom: 1.5em;
+    }
+    
+    #image-gallery-display {
+        gap: 15px; /* Default gap */
+        margin-bottom: 30px; /* Default margin */
+        /*下記をavoidをalwaysに*/
+        page-break-after: always; /* Keep text close to images */
     }
 }
