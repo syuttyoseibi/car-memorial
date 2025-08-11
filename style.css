@@ -530,19 +530,19 @@ body {
     }
 
     .memorial-title {
-        font-size: 1.5em; /* Adjust title font size */
-        margin-bottom: 5mm;
+        font-size: 1.8em; /* Increased title font size */
+        margin-bottom: 7mm;
     }
 
     .memorial-subtitle {
-        font-size: 0.9em; /* Adjust subtitle font size */
-        margin-bottom: 5mm;
+        font-size: 1.1em; /* Increased subtitle font size */
+        margin-bottom: 7mm;
     }
 
     .memorial-story p {
-        font-size: 0.85em; /* Adjust story text font size */
-        line-height: 1.4; /* Adjust line height */
-        margin-bottom: 3mm;
+        font-size: 1em; /* Increased story text font size */
+        line-height: 1.5; /* Adjusted line height */
+        margin-bottom: 4mm;
     }
 
     #image-gallery-display {
