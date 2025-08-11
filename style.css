@@ -152,9 +152,56 @@ button:hover {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+body {
+    font-family: 'Helvetica Neue', 'Arial', 'Hiragino Sans', 'Meiryo', sans-serif;
+    line-height: 1.5; /* 行間を少し狭く */
+    color: #555;
+    background-color: #fdfaf4;
+    margin: 0;
+    padding: 15px; /* 全体のパディングを減らす */
+}
+
+/* Memorial Book Styles */
+#memorial-book-container {
+    margin-top: 20px; /* 上部マージンを減らす */
+    background-color: #fff;
+    padding: 25px; /* パディングを減らす */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 5px solid #e0d7c1;
+    animation: fadeIn 1s;
+}
+
+.memorial-title {
+    text-align: center;
+    font-family: 'Georgia', serif;
+    font-size: 1.5em; /* フォントサイズを小さく */
+    color: #8c7851;
+    margin-bottom: 8px; /* マージンを減らす */
+}
+
+.memorial-subtitle {
+    text-align: center;
+    color: #a08c67;
+    font-size: 0.9em; /* フォントサイズを小さく */
+    margin-bottom: 20px; /* マージンを減らす */
+}
+
+.memorial-photo {
+    width: 100%;
+    display: block;
+    border-radius: 4px;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    max-width: 150px; /* 画像の最大幅を制限 */
+    height: auto; /* 高さは自動調整 */
+    margin: 0 auto 15px auto; /* 中央揃えと下マージン */
+}
+
 .memorial-story p {
     text-indent: 1em; /* Add indentation to each paragraph */
-    margin-bottom: 1.5em;
+    margin-bottom: 1em; /* マージンを減らす */
+    font-size: 0.95em; /* フォントサイズを少し小さく */
 }
 
 .memorial-story .highlight {
