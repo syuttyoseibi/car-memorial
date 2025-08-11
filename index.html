@@ -7,7 +7,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="fade-in">
+    <div id="intro-screen">
+        <h1 class="fade-in-up" data-animation-delay="0.2">愛車メモリアルブック</h1>
+        <p class="fade-in-up" data-animation-delay="0.4">君と走った道のりを、永遠の物語に。</p>
+        <p class="fade-in-up" data-animation-delay="0.6">あなたの愛車との思い出を、AIが感動的な物語に紡ぎます。</p>
+        <button id="start-button" class="scale-in" data-animation-delay="0.8">物語を始める</button>
+    </div>
+
+    <header class="fade-in hidden-initially">
         <h1 class="slide-in-up" data-animation-delay="0.2">愛車メモリアルブック</h1>
         <p class="slide-in-up" data-animation-delay="0.4">君と走った道のりを、永遠の物語に。</p>
         <nav>
@@ -20,8 +27,8 @@
         </nav>
     </header>
 
-    <main>
-        <div id="input-form" class="scale-in" data-animation-delay="0.6">
+    <main class="hidden-initially">
+        <div id="input-form" class="scale-in hidden-initially" data-animation-delay="0.6">
             <h2 class="slide-in-up" data-animation-delay="0.8">あなたの愛車の物語を、AIが紡ぎます</h2>
             <p class="slide-in-up" data-animation-delay="1.0">いくつかの質問に答えるだけで、AIがあなたと愛車の思い出を感動的な物語に仕立てます。</p>
 
