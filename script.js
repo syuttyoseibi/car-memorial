@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Global animation function
     const animateElements = (container) => {
-        container.querySelectorAll('.fade-in, .slide-in-up, .scale-in').forEach(element => {
+        container.querySelectorAll('.fade-in, .slide-in-up, .scale-in, .text-reveal').forEach(element => {
             const delay = parseFloat(element.dataset.animationDelay) || 0;
             setTimeout(() => {
                 element.classList.add('active');
