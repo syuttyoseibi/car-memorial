@@ -139,20 +139,39 @@ document.getElementById('download-pdf').addEventListener('click', async function
                 <meta charset="UTF-8">
                 <title>${title}</title>
                 <style>
-                    body { font-family: 'Noto Sans JP', sans-serif; margin: 8mm 15mm 5mm 15mm; line-height: 1.6; color: #333; font-size: 13pt; }
+                    /* 基本的なスタイルは変更なし */
+                    body { font-family: 'Helvetica', 'Arial', sans-serif; margin: 15mm; line-height: 1.6; color: #333; font-size: 12pt; }
                     .memorial-content { margin-top: 0; }
                     .memorial-title { font-size: 1.8em; text-align: center; margin-top: 0; margin-bottom: 0.3em; color: #444; }
-                    .memorial-subtitle { font-size: 1.0em; text-align: center; margin-top: 0; margin-bottom: 0.8em; color: #666; }
-                    .memorial-story { margin-top: 1.5em; text-align: justify; overflow: visible; }
-                    .memorial-story p { margin-bottom: 0.8em; page-break-inside: auto; }
-                    .highlight { color: #d9534f; font-weight: bold; }
-                    .image-gallery-display { text-align: center; margin-top: 1.5em; margin-bottom: 1.5em; }
-                    .memorial-photo { display: block; max-width: 40%; max-height: 40mm; height: auto; margin: 0 auto 0.8em auto; border: 1px solid #ddd; padding: 5px; box-sizing: border-box; object-fit: contain; }
-                    @page { size: A4; margin: 8mm 15mm 5mm 15mm; }
+                    .memorial-subtitle { font-size: 1.0em; text-align: center; margin-top: 0; margin-bottom: 1.2em; color: #666; }
+                    .memorial-story { margin-top: 1.5em; text-align: justify; }
+                    .memorial-story p { margin-bottom: 0.8em; }
+                    @page { size: A4; margin: 15mm; }
+
+                    /* ▼▼▼ 画像ギャラリーのスタイルをここから修正 ▼▼▼ */
+                    .image-gallery-display {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        gap: 10px; /* 画像間のスペース */
+                        margin-top: 1.5em;
+                        margin-bottom: 1.5em;
+                        page-break-inside: avoid; /* ギャラリーの途中で改ページされるのを防ぐ */
+                    }
+                    .memorial-photo {
+                        /* 幅を固定し、高さは自動調整してアスペクト比を維持 */
+                        width: 55mm;
+                        height: auto;
+                        max-height: 50mm; /* 縦長の画像が大きくなりすぎないように制限 */
+                        border: 1px solid #ddd;
+                        padding: 4px;
+                        box-sizing: border-box;
+                    }
+                    /* ▲▲▲ ここまで修正 ▲▲▲ */
                 </style>
             </head>
             <body>
-                <div class="memorial-content" style="height: auto;">
+                <div class="memorial-content">
                     <h2 class="memorial-title">${title}</h2>
                     <p class="memorial-subtitle">${subtitle}</p>
                     ${imageDataUrls.length > 0 ? '<div class="image-gallery-display">' + imageDataUrls.map(url => `<img class="memorial-photo" src="${url}">`).join('') + '</div>' : ''}
@@ -162,21 +181,20 @@ document.getElementById('download-pdf').addEventListener('click', async function
             </html>
         `;
 
-                const opt = {
-            margin:       [1, 10, 5, 10],
-            filename:     '愛車メモリアルブック.pdf',
+        const opt = {
+            margin:       0, // printableHtmlの@pageでマージンを指定するため0に設定
+            filename:     `${title}.pdf`,
             image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2, logging: true, dpi: 192, letterRendering: true, useCORS: true },
+            html2canvas:  { scale: 2, useCORS: true },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-            pagebreak:    { mode: ['css'] } // 改ページモードをCSSに設定
+            pagebreak:    { mode: ['css', 'avoid-all'] } // 改ページモードを強化
         };
-
-        setTimeout(() => {
-            html2pdf().set(opt).from(printableHtml).save().then(() => {
-                this.disabled = false;
-                this.textContent = 'PDFとしてダウンロード';
-            });
-        }, 100);
+        
+        // タイムアウトは不要な場合が多いため削除してもOK
+        html2pdf().set(opt).from(printableHtml).save().then(() => {
+            this.disabled = false;
+            this.textContent = 'PDFとしてダウンロード';
+        });
 
     } catch (error) {
         console.error('PDF Download Error:', error);
