@@ -258,13 +258,15 @@ button:hover {
     .memorial-photo {
         max-width: 500px; /* Default image size */
         margin: 0 auto 30px auto; /* Default margin */
-        page-break-inside: avoid; /* Prevent images from breaking across pages */
+        /*下記コメントアウト実施*/
+        /*page-break-inside: avoid; /* Prevent images from breaking across pages */
     }
 
     #image-gallery-display {
         gap: 15px; /* Default gap */
         margin-bottom: 30px; /* Default margin */
-        page-break-after: avoid; /* Keep text close to images */
+        /*下記をavoidをalwaysに*/
+        page-break-after: always; /* Keep text close to images */
     }
 
     .memorial-story p {

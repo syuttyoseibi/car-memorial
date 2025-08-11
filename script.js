@@ -182,12 +182,12 @@ document.getElementById('download-pdf').addEventListener('click', async function
         `;
 
         const opt = {
-            margin:       0, // printableHtmlの@pageでマージンを指定するため0に設定
+            margin:       10, // printableHtmlの@pageでマージンを指定するため0に設定
             filename:     `${title}.pdf`,
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { scale: 2, useCORS: true },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-            pagebreak:    { mode: ['css', 'avoid-all'] } // 改ページモードを強化
+            //pagebreak:    { mode: ['css', 'avoid-all'] } // 改ページモードを強化
         };
         
         // タイムアウトは不要な場合が多いため削除してもOK
