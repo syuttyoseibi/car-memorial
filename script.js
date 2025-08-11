@@ -213,6 +213,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }, observerOptions); // Reuse the existing observerOptions
 
         memorialBookObserver.observe(memorialBookContainer);
+
+        // Common download PDF logic (only if on index.html, otherwise it's handled globally)
+        document.getElementById('download-pdf').addEventListener('click', async function() {
+            window.print();
+        });
+
     } else { // Logic for other pages
         // Initially hide main content on other pages
         document.querySelector('header').classList.add('hidden-initially');
@@ -221,63 +227,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Animate header and main content on other pages
         animateElements(document.querySelector('header'));
         animateElements(document.querySelector('main'));
-    }
 
-    // Common download PDF logic
-    document.getElementById('download-pdf').addEventListener('click', async function() {
-        window.print();
-    });
-});
-
-// Image preview logic
-document.getElementById('car-photo').addEventListener('change', function() {
-    const previewContainer = document.getElementById('image-preview');
-    previewContainer.innerHTML = ''; // Clear previous previews
-
-    let files = Array.from(this.files);
-
-    // Limit to 3 files
-    if (files.length > 3) {
-        alert('添付できる画像は3枚までです。最初の3枚のみが選択されます。');
-        files = files.slice(0, 3); // Take only the first 3 files
-    }
-
-    if (files.length === 0) {
-        previewContainer.innerHTML = '<p style="color:#888; font-size:0.9em;">選択された画像はありません</p>';
-        return;
-    }
-
-    files.forEach((file, index) => {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const img = document.createElement('img');
-            img.src = e.target.result;
-            img.classList.add('scale-in'); // Add animation class
-            previewContainer.appendChild(img);
-            // Trigger animation after a short delay
-            setTimeout(() => {
-                img.classList.add('active');
-            }, index * 100); // Staggered animation
-        };
-        reader.readAsDataURL(file);
-    });
-});
-
-// Animate memorial book container on display
-const memorialBookContainer = document.getElementById('memorial-book-container');
-
-const memorialBookObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            observer.unobserve(entry.target);
+        // Common download PDF logic (for other pages)
+        const downloadPdfButton = document.getElementById('download-pdf');
+        if (downloadPdfButton) {
+            downloadPdfButton.addEventListener('click', async function() {
+                window.print();
+            });
         }
-    });
-}, observerOptions); // Reuse the existing observerOptions
-
-memorialBookObserver.observe(memorialBookContainer);
-
-    document.getElementById('download-pdf').addEventListener('click', async function() {
-        window.print();
-    });
+    }
 });
