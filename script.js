@@ -54,8 +54,17 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 introScreen.style.display = 'none'; // Remove from flow
 
+                console.log('Transitioning to main content...');
+                console.log('mainHeader before removal:', mainHeader.classList.contains('hidden-initially'));
+                console.log('mainContent before removal:', mainContent.classList.contains('hidden-initially'));
+
                 mainHeader.classList.remove('hidden-initially');
                 mainContent.classList.remove('hidden-initially');
+                document.getElementById('input-form').classList.remove('hidden-initially'); // Explicitly remove from input-form
+
+                console.log('mainHeader after removal:', mainHeader.classList.contains('hidden-initially'));
+                console.log('mainContent after removal:', mainContent.classList.contains('hidden-initially'));
+                console.log('input-form after removal:', document.getElementById('input-form').classList.contains('hidden-initially'));
 
                 // Trigger animations for main header and form
                 animateElements(mainHeader);
