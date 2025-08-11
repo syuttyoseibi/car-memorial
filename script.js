@@ -149,39 +149,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     imagesHtml += '</div>';
                 }
 
+                const storyDiv = document.createElement('div');
+                storyDiv.classList.add('memorial-story');
+                storyDiv.textContent = storyFromServer; // Use textContent to sanitize
+
                 const storyHTML = `
                     <div id="memorial-content">
                         <h2 class="memorial-title">${nickname}との物語</h2>
                         <p class="memorial-subtitle">君と走った道のりは、永遠に</p>
                         ${imagesHtml} <!-- Insert all images here -->
-                        <div class="memorial-story">${storyFromServer}</div>
+                        ${storyDiv.outerHTML} <!-- Insert sanitized story div -->
                     </div>
                 `;
 
                 const bookContainer = document.getElementById('memorial-book-container');
-                bookContainer.innerHTML = ''; // Clear previous content
-
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(storyFromServer, 'text/html');
-                const memorialStoryDiv = document.createElement('div');
-                memorialStoryDiv.classList.add('memorial-story');
-
-                Array.from(doc.body.children).forEach(child => {
-                    if (child.tagName === 'P' || (child.tagName === 'SPAN' && child.classList.contains('highlight'))) {
-                        memorialStoryDiv.appendChild(child.cloneNode(true));
-                    }
-                });
-
-                const finalStoryHTML = `
-                    <div id="memorial-content">
-                        <h2 class="memorial-title">${nickname}との物語</h2>
-                        <p class="memorial-subtitle">君と走った道のりは、永遠に</p>
-                        ${imagesHtml} <!-- Insert all images here -->
-                        ${memorialStoryDiv.outerHTML}
-                    </div>
-                `;
-
-                bookContainer.innerHTML = finalStoryHTML;
+                bookContainer.innerHTML = storyHTML;
 
                 document.getElementById('input-form').classList.add('hidden');
                 bookContainer.classList.remove('hidden');
