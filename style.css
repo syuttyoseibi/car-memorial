@@ -66,6 +66,109 @@ header {
     padding-bottom: 20px;
 }
 
+/* Navigation Styles */
+nav {
+    margin-top: 20px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #8c7851;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #e0d7c1;
+    color: #555;
+}
+
+/* Content Section for new pages */
+.content-section {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    margin-bottom: 30px;
+}
+
+.content-section h2 {
+    text-align: center;
+    color: #8c7851;
+    font-family: 'Georgia', serif;
+    margin-bottom: 20px;
+}
+
+.content-section h3 {
+    color: #a08c67;
+    border-bottom: 1px solid #e0d7c1;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.content-section p {
+    margin-bottom: 1em;
+}
+
+/* Example Book Styles for Gallery */
+.example-book {
+    border: 1px solid #e0d7c1;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #fdfaf4;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.example-book h3 {
+    text-align: center;
+    color: #8c7851;
+    font-family: 'Georgia', serif;
+    margin-bottom: 15px;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.example-book p {
+    font-size: 0.95em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.example-images {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.example-images img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+
 header h1 {
     font-family: 'Georgia', serif;
     color: #8c7851;
