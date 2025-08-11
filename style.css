@@ -1,21 +1,3 @@
-/* Image Gallery Display Styles (for generated book) */
-#image-gallery-display {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px; /* Space between images */
-    margin-bottom: 30px;
-}
-
-#image-gallery-display .memorial-photo {
-    width: 150px; /* Fixed width for gallery thumbnails */
-    height: 100px; /* Fixed height for gallery thumbnails */
-    object-fit: cover; /* Crop images to fit */
-    border: 2px solid #eee;
-    border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
 @media print {
     body {
         margin: 0; /* Remove body margins */
