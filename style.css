@@ -236,18 +236,28 @@ button:hover {
         background-color: #fff;
     }
 
-    /* PDF生成時に不要な要素を非表示にする */
-    .file-input-container, #file-selection-display, #image-selection-modal, .download-button-container, main > #input-form, #download-area {
+    /* PDF生成時に非表示にしたい要素を全て指定 */
+    header, #input-form, #download-area, footer {
         display: none !important;
     }
     
+    main {
+        max-width: 100% !important;
+    }
+
     /* PDFのページ全体を覆うように設定 */
     #memorial-book-container {
-        width: 100%;
-        max-width: 100%;
-        padding: 15mm; /* PDF全体に余白を設定 */
-        box-shadow: none;
-        border: none;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 15mm !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        background-color: #fff !important;
+    }
+
+    .memorial-title-container, .memorial-story {
+        margin: 0 !important;
     }
 
     /* 画像ギャラリーの後ろで必ず改ページする */
@@ -261,7 +271,7 @@ button:hover {
     .memorial-story {
         page-break-inside: avoid;
     }
-    
+
     /* 段落（pタグ）内で改ページを避ける */
     .memorial-story p {
         page-break-inside: avoid;
@@ -272,12 +282,5 @@ button:hover {
     .memorial-story h2, .memorial-story p {
         orphans: 3;
         widows: 3;
-    }
-
-    /* フッターのスタイル調整 */
-    .footer-content {
-        margin-top: 10mm;
-        text-align: center;
-        page-break-before: auto;
     }
 }
